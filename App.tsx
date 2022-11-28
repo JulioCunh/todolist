@@ -1,5 +1,4 @@
 import { StatusBar } from "react-native";
-import { Task } from "./src/components/Task";
 import { Home } from "./src/screens/Home";
 
 export default function App() {
@@ -11,7 +10,6 @@ export default function App() {
         translucent
       />
       <Home />
-      <Task/>
     </>
     
   )

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Task } from "../../components/Task";
 import { styles } from "./styles";
 
 export function Home() {
@@ -16,7 +17,7 @@ export function Home() {
   }
 
   return (
-    <>
+    <View style={styles.containerApp}>
     <View style={styles.container}>
       <Image source={require('../../../src/assets/Logo.png')} style={styles.logo} />
       </View> 
@@ -39,6 +40,7 @@ export function Home() {
       </Text>
     </TouchableOpacity>
     </View>
-    </> 
+    <Task/>
+    </View> 
   )
 }
