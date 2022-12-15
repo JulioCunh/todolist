@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Task } from "../../components/Task";
 import { styles } from "./styles";
 
@@ -14,6 +14,20 @@ export function Home() {
 
     setTasks(prevState => [...prevState, taskName])
     setTaskName('');
+  }
+
+  function taskRemove(title: string) {
+    Alert.alert('Remover', `Remover o participante ${title}?`, [
+      {
+        text: 'sim',
+        onPress: () => setTasks(prevState => prevState.filter(tasks => tasks !== title)),
+        },
+        {
+          text: 'não',
+          style: 'cancel'
+        }
+      
+    ])
   }
 
   return (
@@ -40,7 +54,20 @@ export function Home() {
       </Text>
     </TouchableOpacity>
     </View>
-    <Task/>
+    
+    <FlatList 
+    data={tasks}
+    keyExtractor={item => item}
+    renderItem={({ item }) => (
+      <Task
+      key={item}
+      title={item}
+      onRemove={() => taskRemove(item)}
+    />
+    )}
+    showsVerticalScrollIndicator={false}
+
+    />
     </View> 
   )
 }

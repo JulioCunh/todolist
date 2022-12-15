@@ -1,7 +1,12 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 
-export function Task() {
+interface Props {
+  title: string;
+  onRemove: () => void;
+}
+
+export function Task({ title, onRemove}: Props) {
   return (
     <View style={styles.container}>
 
@@ -11,12 +16,15 @@ export function Task() {
       </View>
       
         <View style={styles.containerTask}>
-        
+        <TouchableOpacity>
         <Image source={require('../../assets/check.png')} style={{marginRight: 8,}} />
+        </TouchableOpacity>
           <Text style={styles.taskText}>
-          Integer urna interdum massa libero auctor neque turpis turpis semper.
+            {title}
           </Text>
+          <TouchableOpacity onPress={onRemove}>
            <Image source={require('../../assets/trash.png')}  />
+           </TouchableOpacity>
       
         </View>
        
